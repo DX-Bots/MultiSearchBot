@@ -25,47 +25,39 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
 
 
-@Bot.on_message(filters.command("start"))
-async def start_handler(_, message: Message):
-    try:
-        await message.reply_text(
-            text=Script.START_TEXT.format(message.from_user.mention),
-            disable_web_page_preview=True,
-            parse_mode="html",
-            reply_markup=Script.START_BUTTONS
-        )
-    except FloodWait as e:
-        print(f"[{Config.SESSION_NAME}] - Sleeping for {e.x}s")
-        await asyncio.sleep(e.x)
-        await start_handler(_, message)
+@Bot.on_message(filters.private & filters.command(["help"]))
+async def help_user(bot, update):
+    # logger.info(update)
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text=Script.HELP_TEXT,
+        parse_mode="html",
+        disable_web_page_preview=True,
+        reply_to_message_id=update.message_id,
+        reply_markup=Script.HELP_BUTTONS
+   )
 
 
+@Bot.on_message(filters.private & filters.command(["start"]))
+async def start(bot, update):
+    # logger.info(update)
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text=Script.START_TEXT.format(update.from_user.mention),
+        parse_mode="html",
+        disable_web_page_preview=True,
+        reply_to_message_id=update.message_id,
+        reply_markup=Script.START_BUTTONS
+    )
 
-@Bot.on_message(filters.command("help"))
-async def help_handler(_, message: Message):
-    try:
-        await message.reply_text(
-            text=Script.HELP_TEXT.format(message.from_user.mention),
-            disable_web_page_preview=True,
-            parse_mode="html",
-            reply_markup=Script.HELP_BUTTONS
-        )
-    except FloodWait as e:
-        print(f"[{Config.SESSION_NAME}] - Sleeping for {e.x}s")
-        await asyncio.sleep(e.x)
-        await help_handler(_, message)
-
-
-@Bot.on_message(filters.command("about"))
-async def about_handler(_, message: Message):
-    try:
-        await message.reply_text(
-            text=Script.ABOUT_TEXT.format(message.from_user.mention),
-            disable_web_page_preview=True,
-            parse_mode="html",
-            reply_markup=Script.ABOUT_BUTTONS
-        )
-    except FloodWait as e:
-        print(f"[{Config.SESSION_NAME}] - Sleeping for {e.x}s")
-        await asyncio.sleep(e.x)
-        await about_handler(_, message)
+@Bot.on_message(filters.private & filters.command("about") )
+async def about_user(bot, update):
+    # logger.info(update)
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text=Script.ABOUT_TEXT,
+        parse_mode="html",
+        disable_web_page_preview=True,
+        reply_to_message_id=update.message_id,
+        reply_markup=Script.ABOUT_BUTTONS
+    )
