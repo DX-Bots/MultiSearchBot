@@ -1,4 +1,17 @@
-# (c) @PredatorHackerzZ
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# (c) @PredatorHackerzZ | @TeamTeleRoid
+
+# the logging things
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+import os
+
+# the secret configuration specific things
+if bool(os.environ.get("WEBHOOK", False)):
 
 import asyncio
 from pyrogram import Client as Bot
