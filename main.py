@@ -13,14 +13,10 @@ import os
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
 
-import asyncio
 from pyrogram import Client as Bot
 from pyrogram import filters
-from pyrogram.errors import QueryIdInvalid, FloodWait
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, InlineQuery, CallbackQuery, InlineQueryResultArticle, \
-    InputTextMessageContent
 from MultiSearchBot.callback import *
-from configs import Config
+from configs import *
 
 Bot = Client(session_name=Config.SESSION_NAME, api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN)
 
