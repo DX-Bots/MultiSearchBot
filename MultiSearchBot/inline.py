@@ -1,3 +1,9 @@
+""" !/usr/bin/env python3
+    -*- coding: utf-8 -*-
+    Name     : MultiSearchXBot [ Telegram ]
+    Repo     : https://github.com/PredatorHackerzZ/MultiSearchBot
+    Author   : Renjith Mangal [ https://t.me/TheTeleRoid ]"""
+
 import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import QueryIdInvalid, FloodWait
