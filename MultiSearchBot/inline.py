@@ -4,6 +4,7 @@
     Repo     : https://github.com/PredatorHackerzZ/MultiSearchBot
     Author   : Renjith Mangal [ https://t.me/TheTeleRoid ]"""
 
+import os
 import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import QueryIdInvalid, FloodWait
