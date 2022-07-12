@@ -10,9 +10,6 @@ logger = logging.getLogger(__name__)
 
 import os
 
-# the secret configuration specific things
-if bool(os.environ.get("WEBHOOK", False)):
-
 from pyrogram import Client, filters
 
 from configs import Config
